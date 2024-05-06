@@ -2,6 +2,8 @@
 #### Ale Cuevas
 I am creating an outline for a private-facing website, where you can easily edit and view the changes to the public-facing website.
 
+It was interesting trying to figure out how to select and change the colors, and have that change propagate down immediately, without having pre-set options in the css.
+
 ### Website Summary
 Below would be a visual summary of the two websites, with some acknowledgement of the backend/database.
 
@@ -55,15 +57,15 @@ This summary outlines the key components and features of a website that allows u
 - **App Component**:
   - **Contents**: Entire application.
   - **Children**:
-    - Header Component
-    - Main Component
-    - Footer Component
     - ColorPicker Component
 
 - **ColorPicker Component**:
-  - **Contents**: Component for selecting colors.
+  - **Contents**: Component for selecting colors, the rest of the application with the colors attached.
   - **Children**:
     - ColorSelector Component
+    - Header Component
+    - Main Component
+    - Footer Component
 
 - **Header Component**:
   - **Contents**: Top section of the application with links to the other pages.
