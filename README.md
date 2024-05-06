@@ -1,15 +1,15 @@
 # WebDevFinal
-Creating a website that easily edits another website
-Sure, here's a general summary of a website that incorporates various components and features we've discussed:
+#### Ale Cuevas
+I am creating an outline for a private-facing website, where you can easily edit and view the changes to the public-facing website.
 
-### Website Summary:
+### Website Summary
+Below would be a visual summary of the two websites, with some acknowledgement of the backend/database.
 
 #### 1. Homepage:
 - **Description**: The homepage serves as the entry point to the website, providing an overview of its content and features.
 - **Components**: 
   - Header: Contains navigation links to different sections/pages of the website.
   - Introduction Section: Provides a brief description of the website's purpose and offerings.
-  - Call-to-Action Buttons: Encourage users to explore further or take specific actions.
 
 #### 2. View All Animals Page:
 - **Description**: This page displays a list of animals stored in the database, allowing users to browse through them.
@@ -20,29 +20,20 @@ Sure, here's a general summary of a website that incorporates various components
   - LoadingSpinner/ErrorMessage Components: Provide feedback during data fetching/error scenarios.
   - Buttons/Links Component: Allows navigation or actions like editing.
 
-#### 3. Add/Edit Animal Page:
+#### 3. Add/Edit Animal Page (Private-Facing Website Only):
 - **Description**: This page allows users to add new animals to the database or edit existing ones.
 - **Components**:
   - Header/Footer: Navigation links and branding elements.
   - AnimalForm Component: Form for adding/editing animal details.
-  - SubmitButton Component: Triggers form submission.
+  - SubmitButton Component: Triggers form submission to add it to the database.
   - LoadingSpinner/ErrorMessage Components: Provide feedback during form submission/error scenarios.
   - Buttons/Links Component: Allows navigation back to the "View All Animals" page.
 
-#### 4. Animal Details Page:
-- **Description**: Displays detailed information about a specific animal.
-- **Components**:
-  - Header/Footer: Navigation links and branding elements.
-  - AnimalDetails Component: Shows detailed information about the selected animal.
-  - EditButton Component: Navigates to the "Edit Animal" page for modifying animal details.
-  - Buttons/Links Component: Allows navigation back to the "View All Animals" page.
-
-#### 5. Color Picker Component:
-- **Description**: Allows users to customize the website's color scheme.
+#### 5. Color Picker and Text Style Component (Private-Facing Website Only):
+- **Description**: Allows users to customize the website's text style and color scheme.
 - **Components**:
   - ColorPicker Component: Provides a UI for selecting colors.
-  - ThemeProvider Component: Manages the selected colors and applies them globally to the website.
-
+  - 
 #### Backend (Python Server):
 - **Description**: Implements server-side logic and interacts with the database.
 - **Components**:
@@ -56,97 +47,146 @@ Sure, here's a general summary of a website that incorporates various components
   - Animal Table: Stores information about each animal, such as name, species, description, etc.
   - Color Settings Table: Stores selected color settings for website customization.
 
-#### Additional Considerations:
-- **Authentication/Authorization**: Implement user authentication and authorization for certain functionalities.
-- **Error Handling**: Provide robust error handling to ensure smooth user experience.
-- **Styling**: Apply CSS or styling libraries to enhance the visual appeal and usability of the website.
-- **Deployment**: Deploy the website to a production environment for public access.
-
 This summary outlines the key components and features of a website that allows users to view, add, and edit animal data, as well as customize the website's color scheme. It covers frontend components, backend functionality, database structure, and additional considerations for a complete web application.
 
 
-Certainly! Here's what information might be shared between the different components of the website:
+## Components and Hierarchy:
 
-### Frontend Components:
+- **App Component**:
+  - **Contents**: Entire application.
+  - **Children**:
+    - Header Component
+    - Main Component
+    - Footer Component
+    - ColorPicker Component
 
-#### 1. Homepage:
+- **ColorPicker Component**:
+  - **Contents**: Component for selecting colors.
+  - **Children**:
+    - ColorSelector Component
+
 - **Header Component**:
-  - Shared Information: Navigation links to different sections/pages of the website.
-- **Introduction Component**:
-  - Shared Information: None.
-- **Buttons/Links Component**:
-  - Shared Information: Callback functions to handle navigation or specific actions.
+  - **Contents**: Top section of the application with links to the other pages.
+  - **Children**:
+    - Navigation Component
 
-#### 2. View All Animals Page:
-- **Header Component**:
-  - Shared Information: Navigation links to other pages.
+- **Main Component**:
+  - **Contents**: Main content area.
+  - **Children**:
+    - AnimalsList Component (calls to backend for animal data)
+    - AnimalForm Component (calls to backend for adding/editing animals)
+    - AnimalDetails Component
+
+- **Footer Component**:
+  - **Contents**: Bottom section of the application.
+  - **Children**:
+    - Copyright Component
+    - SocialMediaLinks Component
+
+- **Navigation Component**:
+  - **Contents**: Navigation menu.
+  - **Children**: NavigationLinks Component
+
 - **AnimalsList Component**:
-  - Shared Information: List of animals fetched from the backend.
-  - State: Loading state while fetching data.
-- **AnimalItem Component**:
-  - Shared Information: Data for a specific animal (name, species, etc.).
-  - State: None.
-- **LoadingSpinner Component**:
-  - Shared Information: Loading state from AnimalsList component.
-- **ErrorMessage Component**:
-  - Shared Information: Error message if data fetching fails.
-- **Buttons/Links Component**:
-  - Shared Information: Callback functions to handle navigation or edit actions.
+  - **Contents**: Component for displaying a list of animals.
+  - **Children**:
+    - AnimalItem Component
+    - LoadingSpinner Component
+    - ErrorMessage Component
+  - **Calls to Backend**: Fetches animal data from the backend
 
-#### 3. Add/Edit Animal Page:
-- **Header Component**:
-  - Shared Information: Navigation links to other pages.
 - **AnimalForm Component**:
-  - Shared Information: Existing animal data (if editing) or none (if adding).
-  - State: Form input values (name, species, description, etc.).
-- **SubmitButton Component**:
-  - Shared Information: Callback function to handle form submission.
-- **LoadingSpinner Component**:
-  - Shared Information: Loading state while submitting form data.
-- **ErrorMessage Component**:
-  - Shared Information: Error message if form submission fails.
-- **Buttons/Links Component**:
-  - Shared Information: Callback function to handle navigation back to the "View All Animals" page.
+  - **Contents**: Form for adding or editing an animal.
+  - **Children**: FormFields Component
+  - **Calls to Backend**: Adds/edit animals data to the backend
 
-#### 4. Animal Details Page:
-- **Header Component**:
-  - Shared Information: Navigation links to other pages.
 - **AnimalDetails Component**:
-  - Shared Information: Data for the selected animal.
-  - State: None.
-- **EditButton Component**:
-  - Shared Information: Callback function to navigate to the "Edit Animal" page.
-- **Buttons/Links Component**:
-  - Shared Information: Callback function to navigate back to the "View All Animals" page.
+  - **Contents**: Component for displaying details of a specific animal.
+  - **Children**: AnimalInfo Component
 
-### Backend (Python Server):
+- **ColorSelector Component**:
+  - **Contents**: UI for selecting colors.
+  - **Children**: None
 
-#### 1. Routes:
-- Shared Information: Data received from frontend requests (e.g., JSON payloads for creating or updating animals).
-- State: None.
+- **AnimalItem Component**:
+  - **Contents**: Each item in the list of animals.
+  - **Children**: None
 
-#### 2. Database Interaction:
-- Shared Information: Data received from frontend requests.
-- State: Database state (e.g., list of animals).
+- **LoadingSpinner Component**:
+  - **Contents**: Component to indicate loading state.
+  - **Children**: None
 
-#### 3. Server Setup:
-- Shared Information: None.
-- State: Server state (e.g., listening for incoming requests).
+- **ErrorMessage Component**:
+  - **Contents**: Component to display error messages.
+  - **Children**: None
 
-### Database:
-- Shared Information: None.
-- State: Database state (e.g., animal records).
+- **FormFields Component**:
+  - **Contents**: Fields for entering animal data.
+  - **Children**: None
+
+- **AnimalInfo Component**:
+  - **Contents**: Display animal details.
+  - **Children**: None
+
+- **NavLink Component**:
+  - **Contents**: Individual navigation link.
+  - **Children**: None
+
+This structure clarifies which components are responsible for interacting with the backend for fetching data or making changes to the database.
+
+
+# Backend
+
+1. **Routes and Endpoints Definition:**
+   - Define routes for handling animal data and user preferences.
+   - Distinguish between private (GET, POST, PUT, DELETE) and public (GET) endpoints.
+
+2. **Route Handlers Implementation:**
+   - Implement route handlers for CRUD operations on animals and user preferences.
+   - Each route handler should include logic for interacting with the database, parsing request bodies, and returning appropriate responses.
+
+3. **Database Interactions:**
+   - Connect to the database using a database client library (e.g., Mongoose for MongoDB).
+   - Define models or schemas for animals and user preferences to structure data in the database.
+   - Implement functions for CRUD operations on animals and user preferences, utilizing database queries and operations provided by the database client library.
+
+4. **Middleware and Error Handling:**
+   - Set up middleware functions to handle common tasks such as request parsing, CORS (Cross-Origin Resource Sharing), and logging.
+   - Implement error handling middleware to catch and handle errors gracefully, providing meaningful error messages in responses.
+
+5. **Server Configuration:**
+   - Initialize the server framework (e.g., Express.js) and configure it to handle HTTP requests.
+   - Associate route handlers with their corresponding endpoints.
+   - Start the server to listen for incoming requests on a specific port.
+
+### More Backend Details:
+
+1. **CRUD Operations Functions:**
+   - Define functions for CRUD operations on the database:
+     - `retrieveData(query)`: Query the database to fetch data based on the provided criteria.
+     - `addData(data)`: Insert new data into the appropriate database table or collection.
+     - `updateData(id, newData)`: Update an existing record in the database with the new data.
+     - `deleteData(id)`: Delete a record from the database based on its identifier.
+
+2. **Route Handlers Definition:**
+   - Define routes and corresponding handlers for CRUD operations:
+     - `GET /animals`: Handler to retrieve all animals from the database.
+     - `POST /animals`: Handler to add a new animal to the database.
+     - `GET /animals/:id`: Handler to retrieve a specific animal by its ID.
+     - `PUT /animals/:id`: Handler to update an existing animal by its ID.
+     - `DELETE /animals/:id`: Handler to delete an animal by its ID.
+     - `GET /preferences`: Handler to retrieve user preferences for text size and stylization.
+     - `POST /preferences`: Handler to update user preferences for text size and stylization.
 
 ### Additional Considerations:
 - **Authentication/Authorization**: User authentication state may be shared between components to control access to certain pages or actions.
 - **Form Validation**: Error messages or validation state may be shared between components to handle form input validation.
 - **Loading/Error Handling**: Loading and error states may be shared between components to provide feedback to users during data fetching or form submission operations.
 
-By sharing information between components, the website can maintain consistency in data presentation and user interaction, providing a seamless browsing experience for users.
 
 # How the Color Change Component would work
 
-If the color selector is in a parent component and you want it to change the color of multiple child components, you can achieve this by managing the selected color state in the parent component and passing it down to the child components as props. Here's how you can do it:
+The color change selector component (as well as what will control the other stylistic changes) will be present only in the private editing website. The public-facing website will recieve the information about the chosen colors and styles from the shared database.
 
 1. **Parent Component**:
    - Maintain the selected color state in the parent component.
@@ -187,6 +227,7 @@ const ParentComponent = () => {
 export default ParentComponent;
 ```
 
+This would be an example where the child component's background color is changed
 ```jsx
 // Component1.js
 
@@ -204,6 +245,7 @@ const Component1 = ({ color }) => {
 export default Component1;
 ```
 
+This is an example where the child component's text color is changed.
 ```jsx
 // Component2.js
 
@@ -225,9 +267,15 @@ In this example:
 
 - The `ParentComponent` manages the `selectedColor` state and passes it down to `Component1` and `Component2` as props.
 - Whenever the color changes, the `handleColorChange` function updates the `selectedColor` state in the parent component.
-- The `color` prop received by `Component1` and `Component2` is used to dynamically apply styles, changing their appearance based on the selected color.
+- The `color` prop received by `Component1` and `Component2` is used to dynamically apply styles.
 
 This way, a change in the color picker component in the parent component will automatically propagate down to all child components, updating their appearance accordingly.
+In addition, 
+
+A similar logic will be applied for the other stylistic choices that the user will be able to modify in the private editing website.
+
+
+
 
 
 
